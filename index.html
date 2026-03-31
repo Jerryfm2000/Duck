@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duck Hunter: Arcade Edition</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: #4ec0ca;
+            font-family: 'Press Start 2P', cursive;
+            user-select: none;
+        }
+
+        canvas { display: block; cursor: crosshair; }
+
+        #ui-layer {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            pointer-events: none;
+            z-index: 5;
+            display: none;
+        }
+
+        .stat {
+            font-size: 19px;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0px #000;
+        }
+
+        #lives { color: #ff5252; }
+
+        .overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            z-index: 10;
+            text-align: center;
+            backdrop-filter: blur(4px);
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-shadow: 5px 5px 0px #b8860b;
+        }
+
+        p { font-size: 12px; line-height: 2; max-width: 600px; color: #eee; }
+
+        button {
+            background: #ff9800;
+            border: 4px solid #fff;
+            padding: 15px 30px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            margin-top: 30px;
+            box-shadow: 6px 6px 0px #000;
+        }
+
+        button:hover {
+            background: #e68900;
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px #000;
+        }
+
+        button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="start-screen" class="overlay">
+        <h1>DUCK HUNTER</h1>
+        <p>TAG THE TARGETS!!!<br>
+        <span style="color: #ff01ff;">RAINBOW DISCO</span> = 150 PTS<br>
+        <span style="color: #ffd700;">GOLDEN DUCK</span> = 50 PTS<br>
+        REGULAR DUCKS = 15 PTS</p>
+        <button onclick="startGame()">PRESS START</button>
+    </div>
+
+    <div id="ui-layer">
+        <div class="stat">SCORE: <span id="score">0</span></div>
